@@ -33,7 +33,7 @@ export default function HomePage() {
 
         <p className="text-sm text-ink/45">{format(new Date(), "EEEE, MMMM d, yyyy")}</p>
         <h2 className="mt-1 font-serif text-3xl">
-          {greeting()}{user ? `, ${user.profile.displayName.split(" ")[0]}` : ""}.
+          {greeting()}{user?.profile?.displayName ? `, ${user.profile.displayName.split(" ")[0]}` : ""}.
         </h2>
 
         {/* ---- Today's entry ---- */}

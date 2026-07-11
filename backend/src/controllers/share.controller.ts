@@ -49,7 +49,11 @@ export const createShare = asyncHandler(async (req: Request, res: Response) => {
     });
   } else if (recipientEmail) {
     const owner = await prisma.profile.findUnique({ where: { userId: req.user!.userId } });
-    await emailService.sendShareNotification(recipientEmail, owner?.displayName ?? "A Ruth user", entry.title);
+    try {
+      await emailService.sendShareNotification(recipientEmail, owner?.displayName ?? "A Ruth user", entry.title);
+    } catch (err) {
+      console.error("[createShare] Failed to send share notification email:", err);
+    }
   }
 
   const shareLink = linkToken ? `${process.env.CLIENT_URL}/shared/${linkToken}` : undefined;

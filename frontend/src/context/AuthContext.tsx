@@ -22,18 +22,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // On mount, try to silently refresh the session using the httpOnly cookie.
   useEffect(() => {
+    let settled = false;
+
+    // Safety net: never let the app hang on the loading screen forever.
+    // If the initial session check hasn't finished in 10s (e.g. a stalled
+    // request), stop blocking the UI so the person can at least see the
+    // login screen instead of a permanent blank/loading page.
+    const safetyTimer = setTimeout(() => {
+      if (!settled) {
+        console.warn("[Auth] Initial session check timed out after 10s; unblocking UI.");
+        setIsLoading(false);
+      }
+    }, 10000);
+
     (async () => {
       try {
         const { accessToken } = await unwrap<{ accessToken: string }>(api.post("/auth/refresh"));
         setAccessToken(accessToken);
         const { user } = await unwrap<{ user: User }>(api.get("/auth/me"));
         setUser(user);
-      } catch {
+      } catch (err) {
         setAccessToken(null);
+        console.debug("[Auth] No active session on load (expected if logged out).", err);
       } finally {
+        settled = true;
+        clearTimeout(safetyTimer);
         setIsLoading(false);
       }
     })();
+
+    return () => {
+      settled = true;
+      clearTimeout(safetyTimer);
+    };
   }, []);
 
   async function login(identifier: string, password: string) {
@@ -42,6 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     );
     setAccessToken(accessToken);
     setUser(user);
+    setIsLoading(false);
     router.push("/home");
   }
 
@@ -51,6 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     );
     setAccessToken(accessToken);
     setUser(user);
+    setIsLoading(false);
     router.push("/home");
   }
 

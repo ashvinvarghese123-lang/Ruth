@@ -11,7 +11,7 @@ const REFRESH_COOKIE = "ruth_refresh_token";
 const REFRESH_COOKIE_OPTS = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "lax" as const,
+  sameSite: (process.env.NODE_ENV === "production" ? "none" : "lax") as "none" | "lax",
   maxAge: 30 * 24 * 60 * 60 * 1000,
 };
 
@@ -41,7 +41,14 @@ export const signup = asyncHandler(async (req: Request, res: Response) => {
     include: { profile: true },
   });
 
-  await emailService.sendVerificationEmail(email, emailVerifyToken);
+  try {
+    await emailService.sendVerificationEmail(email, emailVerifyToken);
+  } catch (err) {
+    // The account was already created successfully — a failed verification
+    // email shouldn't break signup. Log it and let the user verify later
+    // (e.g. via a "resend verification email" flow).
+    console.error("[signup] Failed to send verification email:", err);
+  }
 
   const accessToken = signAccessToken({ userId: user.id, username: user.username });
   const refreshToken = signRefreshToken({ userId: user.id });
@@ -130,7 +137,11 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
       where: { id: user.id },
       data: { resetToken, resetTokenExpiry: expiryFromNow(1) },
     });
-    await emailService.sendPasswordResetEmail(email, resetToken);
+    try {
+      await emailService.sendPasswordResetEmail(email, resetToken);
+    } catch (err) {
+      console.error("[forgotPassword] Failed to send reset email:", err);
+    }
   }
 
   return ok(res, { message: "If that email is registered, a reset link has been sent." });

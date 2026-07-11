@@ -54,15 +54,15 @@ export function Sidebar() {
           className="mt-4 flex items-center gap-3 rounded-2xl px-3 py-2.5 hover:bg-ink/5"
         >
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-sm font-medium text-ink overflow-hidden">
-            {user.profile.profilePhoto ? (
+            {user.profile?.profilePhoto ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={user.profile.profilePhoto} alt="" className="h-full w-full object-cover" />
             ) : (
-              user.profile.displayName?.charAt(0).toUpperCase()
+              user.profile?.displayName?.charAt(0).toUpperCase() ?? user.username.charAt(0).toUpperCase()
             )}
           </div>
           <div className="min-w-0">
-            <p className="truncate text-sm font-medium text-ink">{user.profile.displayName}</p>
+            <p className="truncate text-sm font-medium text-ink">{user.profile?.displayName ?? user.username}</p>
             <p className="truncate text-xs text-ink/50">@{user.username}</p>
           </div>
         </Link>

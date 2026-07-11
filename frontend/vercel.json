@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://ruth-6hbr.onrender.com/api/:path*"
+    }
+  ]
+}

@@ -11,7 +11,7 @@ const REFRESH_COOKIE = "ruth_refresh_token";
 const REFRESH_COOKIE_OPTS = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "lax" as const,
+  sameSite: (process.env.NODE_ENV === "production" ? "none" : "lax") as "none" | "lax",
   maxAge: 30 * 24 * 60 * 60 * 1000,
 };
 

@@ -36,7 +36,7 @@ export default function JournalViewPage() {
 
   async function handleDelete() {
     if (!confirm("Delete this journal page? This can't be undone.")) return;
-    await deleteJournal.mutateAsync(entry.id);
+    await deleteJournal.mutateAsync(entry!.id);
     show("Entry deleted.");
     router.push("/home");
   }
@@ -73,7 +73,7 @@ export default function JournalViewPage() {
 
       {entry.suggestedQuote && (
         <blockquote className="mb-8 border-l-2 border-accent pl-4 font-serif text-lg italic text-ink/70">
-          “{entry.suggestedQuote}”
+          "{entry.suggestedQuote}"
         </blockquote>
       )}
 

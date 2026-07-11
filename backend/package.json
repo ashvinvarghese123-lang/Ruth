@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "ruth-backend",
   "version": "1.0.0",
   "description": "Ruth — Document Yourself. API server.",
@@ -43,6 +43,7 @@
     "@types/morgan": "^1.9.9",
     "@types/multer": "^1.4.12",
     "@types/node": "^20.16.10",
+    "@types/nodemailer": "^6.4.16",
     "@types/uuid": "^9.0.8",
     "prisma": "^5.20.0",
     "tsx": "^4.19.1",

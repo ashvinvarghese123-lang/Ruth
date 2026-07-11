@@ -26,7 +26,7 @@ export default function HomePage() {
     <div>
       <Topbar title="Home" />
 
-      <div className="relative px-6 md:px-10">
+      <div className="relative px-4 sm:px-6 md:px-10">
         <Float speed="float-slow" className="pointer-events-none absolute right-6 top-0 hidden opacity-50 lg:block">
           <StickyNote size={40} />
         </Float>

@@ -116,20 +116,20 @@ export function JournalEditor({ existingEntry }: { existingEntry?: JournalEntry 
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-6 pb-32 pt-6 md:px-10">
-      <div className="mb-6 flex items-center justify-between">
+    <div className="mx-auto max-w-3xl px-4 pb-32 pt-6 sm:px-6 md:px-10">
+      <div className="mb-6 flex items-start justify-between gap-3">
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Give this page a title…"
-          className="w-full bg-transparent font-serif text-3xl outline-none placeholder:text-ink/30"
+          className="w-full bg-transparent font-serif text-2xl outline-none placeholder:text-ink/30 sm:text-3xl"
         />
-        <span className="shrink-0 pl-4 text-xs text-ink/35">
+        <span className="shrink-0 pt-1 text-xs text-ink/35">
           {saveState === "saving" ? "Saving…" : saveState === "saved" ? "Saved" : ""}
         </span>
       </div>
 
-      <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <Input type="date" value={entryDate} onChange={(e) => setEntryDate(e.target.value)} />
         <Input placeholder="Location (optional)" value={location} onChange={(e) => setLocation(e.target.value)} />
         <Input placeholder="Weather (optional)" value={weather} onChange={(e) => setWeather(e.target.value)} />

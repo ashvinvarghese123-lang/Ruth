@@ -35,9 +35,9 @@ export default function SearchPage() {
   return (
     <div>
       <Topbar title="Search" />
-      <div className="px-6 pb-16 md:px-10">
-        <div className="paper-card p-5">
-          <div className="flex gap-2">
+      <div className="px-4 pb-16 sm:px-6 md:px-10">
+        <div className="paper-card p-4 sm:p-5">
+          <div className="flex flex-col gap-2 sm:flex-row">
             <Input
               placeholder="Search titles, keywords, entries…"
               value={q}
@@ -45,13 +45,14 @@ export default function SearchPage() {
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               className="flex-1"
             />
-            <button onClick={handleSearch} className="btn-primary" aria-label="Search">
+            <button onClick={handleSearch} className="btn-primary w-full sm:w-auto" aria-label="Search">
               <SearchIcon size={16} />
+              <span className="sm:hidden">Search</span>
             </button>
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center gap-3">
-            <select value={mood} onChange={(e) => setMood(e.target.value as Mood | "")} className="input-field w-auto">
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <select value={mood} onChange={(e) => setMood(e.target.value as Mood | "")} className="input-field w-full sm:w-auto">
               <option value="">Any mood</option>
               {MOODS.map((m) => <option key={m.value} value={m.value}>{m.emoji} {m.label}</option>)}
             </select>
@@ -59,13 +60,13 @@ export default function SearchPage() {
               placeholder="Location"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="input-field w-auto"
+              className="input-field w-full sm:w-auto"
             />
             <button
               type="button"
               onClick={() => setSemantic(!semantic)}
               className={clsx(
-                "flex items-center gap-1.5 rounded-pill border px-3 py-1.5 text-xs transition-colors",
+                "flex w-full items-center justify-center gap-1.5 rounded-pill border px-3 py-1.5 text-xs transition-colors sm:w-auto",
                 semantic ? "border-ink bg-ink text-paper" : "border-ink/15 text-ink/60 hover:bg-ink/5"
               )}
             >

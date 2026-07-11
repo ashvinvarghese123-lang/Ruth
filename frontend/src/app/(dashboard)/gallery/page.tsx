@@ -21,7 +21,7 @@ export default function GalleryPage() {
   return (
     <div>
       <Topbar title="Gallery" />
-      <div className="px-6 pb-16 md:px-10">
+      <div className="px-4 pb-16 sm:px-6 md:px-10">
         <div className="mb-6 flex gap-2">
           {(["grid", "timeline", "favorites"] as Tab[]).map((t) => (
             <button

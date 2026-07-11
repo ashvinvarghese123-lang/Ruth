@@ -45,7 +45,7 @@ export default function ProfilePage() {
 
   if (isLoading) {
     return (
-      <div className="mx-auto max-w-xl px-6 pt-10">
+      <div className="mx-auto max-w-xl px-4 pt-10 sm:px-6">
         <Skeleton className="h-24 w-24 rounded-full" />
       </div>
     );
@@ -57,7 +57,7 @@ export default function ProfilePage() {
   return (
     <div>
       <Topbar title="Profile" />
-      <div className="mx-auto max-w-xl px-6 pb-24 text-center md:px-10">
+      <div className="mx-auto max-w-xl px-4 pb-24 text-center sm:px-6 md:px-10">
         <div className="relative mx-auto w-fit">
           <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-accent text-3xl font-serif text-ink">
             {profile.profilePhoto ? (

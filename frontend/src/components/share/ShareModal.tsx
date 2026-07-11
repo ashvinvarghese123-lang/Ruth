@@ -49,7 +49,7 @@ export function ShareModal({ open, onClose, journalEntryId }: { open: boolean; o
 
   return (
     <Modal open={open} onClose={onClose} title="Share this page">
-      <div className="mb-4 flex gap-2">
+      <div className="mb-4 flex flex-wrap gap-2">
         <TabButton active={mode === "username"} onClick={() => setMode("username")} icon={<User size={14} />} label="Username" />
         <TabButton active={mode === "email"} onClick={() => setMode("email")} icon={<Mail size={14} />} label="Email" />
         <TabButton active={mode === "link"} onClick={() => setMode("link")} icon={<Link2 size={14} />} label="Private link" />

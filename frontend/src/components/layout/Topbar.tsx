@@ -13,7 +13,7 @@ export function Topbar({ title }: { title: string }) {
   });
 
   return (
-    <header className="flex items-center justify-between px-6 py-6 md:px-10">
+    <header className="flex items-center justify-between px-4 py-5 sm:px-6 sm:py-6 md:px-10">
       <h1 className="font-serif text-2xl md:text-3xl">{title}</h1>
       <Link href="/notifications" className="relative rounded-full p-2 hover:bg-ink/5" aria-label="Notifications">
         <Bell size={20} />

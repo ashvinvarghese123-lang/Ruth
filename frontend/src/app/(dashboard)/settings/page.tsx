@@ -56,7 +56,7 @@ export default function SettingsPage() {
   return (
     <div>
       <Topbar title="Settings" />
-      <div className="mx-auto max-w-2xl px-6 pb-24 md:px-10">
+      <div className="mx-auto max-w-2xl px-4 pb-24 sm:px-6 md:px-10">
         <Card className="mb-5">
           <h3 className="mb-1 font-serif text-lg">Account</h3>
           <p className="text-sm text-ink/50">{user?.email} · @{user?.username}</p>

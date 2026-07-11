@@ -2,5 +2,5 @@ import { HTMLAttributes } from "react";
 import clsx from "clsx";
 
 export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return <div className={clsx("paper-card p-6", className)} {...props} />;
+  return <div className={clsx("paper-card p-5 sm:p-6", className)} {...props} />;
 }

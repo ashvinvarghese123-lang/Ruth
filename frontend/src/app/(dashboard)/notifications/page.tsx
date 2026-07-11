@@ -22,7 +22,7 @@ export default function NotificationsPage() {
   return (
     <div>
       <Topbar title="Notifications" />
-      <div className="mx-auto max-w-xl px-6 pb-24 md:px-10">
+      <div className="mx-auto max-w-xl px-4 pb-24 sm:px-6 md:px-10">
         {isLoading ? (
           <p className="py-16 text-center text-sm text-ink/40">Loading…</p>
         ) : data?.notifications?.length ? (

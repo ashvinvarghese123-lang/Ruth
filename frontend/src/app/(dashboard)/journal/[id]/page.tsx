@@ -22,7 +22,7 @@ export default function JournalViewPage() {
 
   if (isLoading) {
     return (
-      <div className="mx-auto max-w-2xl px-6 pt-10">
+      <div className="mx-auto max-w-2xl px-4 pt-10 sm:px-6">
         <Skeleton className="h-10 w-2/3" />
         <Skeleton className="mt-6 h-64 w-full" />
       </div>
@@ -36,13 +36,13 @@ export default function JournalViewPage() {
 
   async function handleDelete() {
     if (!confirm("Delete this journal page? This can't be undone.")) return;
-    await deleteJournal.mutateAsync(entry!.id);
+    await deleteJournal.mutateAsync(entry.id);
     show("Entry deleted.");
     router.push("/home");
   }
 
   return (
-    <article className="mx-auto max-w-2xl px-6 pb-32 pt-10 md:px-10">
+    <article className="mx-auto max-w-2xl px-4 pb-32 pt-8 sm:px-6 sm:pt-10 md:px-10">
       <div className="mb-6 flex items-center justify-between text-sm text-ink/50">
         <span>{format(new Date(entry.entryDate), "EEEE, MMMM d, yyyy")}</span>
         <div className="flex items-center gap-3">
@@ -58,7 +58,7 @@ export default function JournalViewPage() {
         </div>
       </div>
 
-      <h1 className="mb-3 font-serif text-4xl leading-tight">{entry.title}</h1>
+      <h1 className="mb-3 font-serif text-3xl leading-tight sm:text-4xl">{entry.title}</h1>
 
       <div className="mb-8 flex flex-wrap items-center gap-3 text-xs text-ink/50">
         {mood && <span className="rounded-pill bg-accent/50 px-2.5 py-1 text-ink/70">{mood.emoji} {mood.label}</span>}
@@ -73,7 +73,7 @@ export default function JournalViewPage() {
 
       {entry.suggestedQuote && (
         <blockquote className="mb-8 border-l-2 border-accent pl-4 font-serif text-lg italic text-ink/70">
-          "{entry.suggestedQuote}"
+          “{entry.suggestedQuote}”
         </blockquote>
       )}
 
